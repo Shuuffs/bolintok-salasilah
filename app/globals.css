@@ -1,0 +1,176 @@
+/* ============================================================
+   Design tokens. PLACEHOLDER brand colors — replace the primitives
+   below with values sampled from public/logo.png when available.
+   Components must use only the semantic tokens (second block).
+   Contrast (WCAG 2.x, measured): text/surface 14.1, muted/surface 7.7,
+   accent/surface 5.5, on-accent/accent 6.3, link/surface 6.5, gold/surface 8.3.
+   ============================================================ */
+:root {
+  /* primitives (logo-derived — placeholder) */
+  /* Logo colors: blue #52619f, gold #dfc507, olive #8c9b1e, mauve #beaab9, cream #f6f6f6.
+     Backgrounds are very dark shades of the logo blue; the logo blue itself is too dark for
+     text on them, so --blue-300 is a lightened tint (same hue) for links. */
+  --forest-950: #0e1020;   /* dark blue-black (bg) */
+  --forest-900: #161a30;   /* surface */
+  --forest-800: #20264a;   /* surface-2 */
+  --forest-700: #343d6e;   /* border */
+  --forest-500: #52619f;   /* logo blue (border-strong) */
+  --forest-400: #8c9b1e;   /* logo olive (accent) */
+  --forest-ink: #0e1020;
+  --cream-100: #f6f6f6;
+  --cream-300: #d9dae3;
+  --sage-300: #beaab9;     /* logo mauve (muted) */
+  --blue-300: #93a4e6;     /* logo blue, lightened for contrast */
+  --gold-400: #dfc507;     /* logo gold */
+  --coral-300: #eba3b8;    /* mauve pushed toward pink for errors */
+
+  /* generation colors (tree dots + legend), index 1..7 */
+  --gen-1: var(--gold-400);
+  --gen-2: var(--blue-300);
+  --gen-3: var(--forest-400);
+  --gen-4: var(--sage-300);
+  --gen-5: var(--cream-100);
+  --gen-6: var(--coral-300);
+  --gen-7: var(--forest-500);
+
+  /* semantic tokens */
+  --bg: var(--forest-950);
+  --surface: var(--forest-900);
+  --surface-2: var(--forest-800);
+  --border: var(--forest-700);
+  --border-strong: var(--forest-500);
+  --text: var(--cream-100);
+  --text-spouse: var(--cream-300);
+  --muted: var(--sage-300);
+  --accent: var(--forest-400);
+  --on-accent: var(--forest-ink);
+  --link: var(--blue-300);
+  --highlight: var(--gold-400);
+  --danger: var(--coral-300);
+  --on-danger: var(--forest-ink);
+  --scrim: rgba(8, 9, 20, 0.94);
+
+  /* shape + type */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --space: 16px;
+  /* motion: keep in step with MOTION in components/TreeView.js */
+  --motion: 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font);
+  line-height: 1.45; -webkit-tap-highlight-color: transparent; }
+a { color: var(--link); }
+main { min-height: 100dvh; padding-bottom: 72px; }
+h1 { font-size: 22px; margin: 0 0 var(--space); }
+h2 { font-size: 18px; margin: 28px 0 12px; }
+.muted { color: var(--muted); }
+.error { color: var(--danger); }
+:focus-visible { outline: 2px solid var(--highlight); outline-offset: 2px; }
+
+/* nav */
+.nav { position: fixed; bottom: 0; left: 0; right: 0; display: flex; background: var(--surface);
+  border-top: 1px solid var(--border); z-index: 20; padding-bottom: env(safe-area-inset-bottom); }
+.nav a { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 10px 8px 12px; color: var(--muted); text-decoration: none; font-size: 12px; min-height: 56px; }
+.nav a.active { color: var(--text); box-shadow: inset 0 3px 0 var(--highlight); }
+.nav a.active svg { color: var(--accent); }
+
+/* buttons, inputs, cards */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--accent); color: var(--on-accent); border: 1px solid transparent;
+  border-radius: var(--radius); padding: 12px 18px; font: inherit; font-size: 16px; font-weight: 600;
+  cursor: pointer; min-height: 48px; text-decoration: none; }
+.btn.secondary { background: var(--surface-2); color: var(--text); border-color: var(--border); font-weight: 500; }
+/* active / pressed state (e.g. tree toolbar mode) */
+.btn.secondary[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: transparent; font-weight: 600; }
+.btn.danger { background: var(--danger); color: var(--on-danger); }
+.btn.small { padding: 8px 12px; min-height: 40px; font-size: 14px; }
+.btn:disabled { opacity: .5; cursor: default; }
+.btn { transition: background-color var(--motion), color var(--motion), border-color var(--motion); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+input, select { background: var(--surface); color: var(--text); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); padding: 12px; font: inherit; font-size: 16px; width: 100%; }
+input::placeholder { color: var(--muted); }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 14px; margin-bottom: 12px; }
+.notice { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--highlight);
+  padding: 12px; border-radius: var(--radius); font-size: 14px; margin-bottom: var(--space); }
+.notice ul { margin: 6px 0 0; padding-left: 20px; }
+
+/* layout helpers */
+.page { padding: 20px var(--space); max-width: 1000px; margin: 0 auto; }
+.center { display: flex; flex-direction: column; align-items: center; gap: var(--space); text-align: center; padding-top: 40px; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; }
+.stack { display: flex; flex-direction: column; gap: 10px; }
+.between { justify-content: space-between; align-items: center; }
+
+/* gallery / camera */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 6px; }
+.grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-sm); display: block;
+  background: var(--surface); cursor: pointer; }
+.preview { max-width: 100%; max-height: 60dvh; border-radius: var(--radius); }
+.lightbox { position: fixed; inset: 0; background: var(--scrim); z-index: 50; display: flex; align-items: center; justify-content: center; }
+.lightbox img { max-width: 100%; max-height: 100%; }
+.mod-item { position: relative; }
+.mod-item button { position: absolute; top: 4px; right: 4px; min-width: 40px; padding: 8px; }
+
+/* tree */
+.tree-wrap { position: fixed; inset: 0 0 56px 0; }
+.tree-wrap svg.tree-svg { width: 100%; height: 100%; touch-action: none; display: block; }
+.tree-search { position: absolute; top: 10px; left: 10px; right: 10px; z-index: 5; max-width: 560px; }
+.tree-toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.tree-toolbar input { flex: 1 1 160px; width: auto; min-width: 0; }
+.tree-buttons { display: flex; gap: 6px; overflow-x: auto; max-width: 100%; padding-bottom: 2px; scrollbar-width: none; }
+.tree-buttons::-webkit-scrollbar { display: none; }
+.tree-buttons .btn { white-space: nowrap; flex: 0 0 auto; }
+.tree-menu-btn { display: none; }
+@media (max-width: 799px) {
+  .tree-toolbar { flex-wrap: nowrap; position: relative; }
+  .tree-toolbar input { flex: 1 1 auto; }
+  .tree-menu-btn { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; width: 44px; height: 44px; padding: 0; }
+  .tree-buttons { display: none; position: absolute; top: calc(100% + 4px); right: 0; z-index: 6; flex-direction: column;
+    gap: 4px; padding: 6px; min-width: 190px; max-width: none; overflow: visible;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 4px 16px rgba(0,0,0,.4); }
+  .tree-buttons.open { display: flex; }
+  .tree-buttons .btn { justify-content: flex-start; width: 100%; }
+}
+.tree-results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  margin-top: 4px; max-height: 40dvh; overflow: auto; }
+.tree-results button { display: block; width: 100%; text-align: left; background: none; border: 0;
+  border-bottom: 1px solid var(--border); color: var(--text); padding: 14px; font: inherit; font-size: 15px; }
+.tree-legend { position: absolute; right: 10px; bottom: 30px; z-index: 5; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.tree-legend ul { list-style: none; margin: 0; padding: 8px 12px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); font-size: 12px; box-shadow: 0 4px 16px rgba(0,0,0,.4); }
+.tree-legend li { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
+.tree-legend .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.tree-hint { position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; font-size: 12px; color: var(--muted); pointer-events: none; }
+.node { cursor: pointer; }
+.node text.name { fill: var(--text); font-size: 14px; }
+.node text.spouse { fill: var(--text-spouse); font-size: 12px; }
+.node text.count { fill: var(--muted); font-size: 11px; }
+.node.hl text.name { fill: var(--highlight); font-weight: 700; }
+.node circle.collapsed { stroke: var(--text); }
+.link { fill: none; stroke: var(--border-strong); stroke-width: 1.5px; }
+.link.hl { stroke: var(--highlight); stroke-width: 2.5px; }
+
+/* admin */
+.table-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+.admin-table { width: 100%; border-collapse: collapse; min-width: 640px; }
+.admin-table th, .admin-table td { text-align: left; padding: 4px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.admin-table th { color: var(--muted); font-weight: 500; background: var(--surface); padding: 8px 10px; }
+.admin-table tbody tr:nth-child(even) { background: var(--surface); }
+.admin-table tbody tr:hover { background: var(--surface-2); }
+.admin-table tbody tr:last-child td { border-bottom: 0; }
+.admin-table .actions-cell { white-space: nowrap; width: 1%; }
+.actions { gap: 6px; flex-wrap: nowrap; }
+.admin-table .btn.small { min-height: 32px; padding: 4px 10px; }
+.th-sort { display: inline-flex; align-items: center; gap: 4px; background: none; border: 0; padding: 0;
+  color: inherit; font: inherit; cursor: pointer; }
+.th-sort:hover { color: var(--text); }
+.pager { margin: 12px 0; gap: 8px; }
+@media (min-width: 800px) { .cards-only { display: none; } }
+@media (max-width: 799px) { .table-only { display: none; } }
