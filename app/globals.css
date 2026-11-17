@@ -1,37 +1,41 @@
 /* ============================================================
-   Design tokens. PLACEHOLDER brand colors — replace the primitives
-   below with values sampled from public/logo.png when available.
+   Design tokens. Palette sampled from the family logo:
+   blue #2c4892, gold #eae70c, green #57b942, mauve #a285a4, white #ffffff.
+   Dark theme is the base; logo colors are accents against it.
    Components must use only the semantic tokens (second block).
-   Contrast (WCAG 2.x, measured): text/surface 14.1, muted/surface 7.7,
-   accent/surface 5.5, on-accent/accent 6.3, link/surface 6.5, gold/surface 8.3.
+   Contrast (WCAG 2.x, measured vs --bg / --surface):
+   text 18.9/17.1, muted 5.8/5.2, link 8.0/7.2, accent 5.7/5.2,
+   highlight 14.3/13.0, green 7.6/6.9, danger 9.4/8.5,
+   on-accent/accent 5.7, border-strong/surface 3.0.
+   Raw logo blue (#2c4892) is only 2.2:1 on --bg, so it is used for
+   borders only; text/accents use lighter tints of the same hue.
    ============================================================ */
 :root {
-  /* primitives (logo-derived — placeholder) */
-  /* Logo colors: blue #52619f, gold #dfc507, olive #8c9b1e, mauve #beaab9, cream #f6f6f6.
-     Backgrounds are very dark shades of the logo blue; the logo blue itself is too dark for
-     text on them, so --blue-300 is a lightened tint (same hue) for links. */
+  /* primitives */
   --forest-950: #0e1020;   /* dark blue-black (bg) */
   --forest-900: #161a30;   /* surface */
   --forest-800: #20264a;   /* surface-2 */
-  --forest-700: #343d6e;   /* border */
-  --forest-500: #52619f;   /* logo blue (border-strong) */
-  --forest-400: #8c9b1e;   /* logo olive (accent) */
+  --forest-700: #2c4892;   /* logo blue (border) */
+  --forest-500: #4a63ad;   /* logo blue, lightened (border-strong, 3:1 UI) */
+  --forest-400: #6f8bdc;   /* logo blue, lightened (accent) */
   --forest-ink: #0e1020;
-  --cream-100: #f6f6f6;
-  --cream-300: #d9dae3;
-  --sage-300: #beaab9;     /* logo mauve (muted) */
-  --blue-300: #93a4e6;     /* logo blue, lightened for contrast */
-  --gold-400: #dfc507;     /* logo gold */
+  --cream-100: #ffffff;    /* logo white */
+  --cream-300: #d6dbec;
+  --sage-300: #a285a4;     /* logo mauve (muted) */
+  --blue-300: #8fa6ee;     /* logo blue, lightened more (links) */
+  --gold-400: #eae70c;     /* logo gold */
+  --green-400: #57b942;    /* logo green */
+  --teal-300: #5fcfc0;     /* blue-green midpoint, fills the hue gap for gen 7 */
   --coral-300: #eba3b8;    /* mauve pushed toward pink for errors */
 
   /* generation colors (tree dots + legend), index 1..7 */
   --gen-1: var(--gold-400);
   --gen-2: var(--blue-300);
-  --gen-3: var(--forest-400);
+  --gen-3: var(--green-400);
   --gen-4: var(--sage-300);
   --gen-5: var(--cream-100);
   --gen-6: var(--coral-300);
-  --gen-7: var(--forest-500);
+  --gen-7: var(--teal-300);
 
   /* semantic tokens */
   --bg: var(--forest-950);
@@ -86,7 +90,7 @@ h2 { font-size: 18px; margin: 28px 0 12px; }
   cursor: pointer; min-height: 48px; text-decoration: none; }
 .btn.secondary { background: var(--surface-2); color: var(--text); border-color: var(--border); font-weight: 500; }
 /* active / pressed state (e.g. tree toolbar mode) */
-.btn.secondary[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: transparent; font-weight: 600; }
+.btn.secondary[aria-pressed="true"] { background: var(--highlight); color: var(--on-accent); border-color: transparent; font-weight: 600; }
 .btn.danger { background: var(--danger); color: var(--on-danger); }
 .btn.small { padding: 8px 12px; min-height: 40px; font-size: 14px; }
 .btn:disabled { opacity: .5; cursor: default; }

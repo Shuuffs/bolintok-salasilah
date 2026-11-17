@@ -13,6 +13,7 @@ const PHOTOS = {
   'MAGDALENA KINDAYAM': '/photos/kindayam.png',
   'CLEMENT MUYUK BOLINTOK': '/photos/muyuk.png',
   'SIMIN @ SIMON BOLINTOK': '/photos/simin.png',
+  'BOLINTOK BIN SURAT': '/photos/bolintok.png', // root ancestor; family logo emblem as placeholder avatar
 };
 const photoFor = (name) => {
   const n = (name || '').replace(/\s+/g, ' ').trim().toUpperCase();
